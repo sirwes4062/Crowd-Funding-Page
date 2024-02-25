@@ -4,7 +4,6 @@ import Reward from "./Reward";
 const About = () => {
   return (
     <section className="about-section">
-      {/* //////////////// */}
       <div className="about-container m-auto p-12 md:p-12 sm:p-3 mb-24">
         <div className="about-section">
           <h1 className=" about-heading text-2xl mb-6  text-Black">

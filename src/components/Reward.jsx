@@ -3,7 +3,12 @@ import { useContext } from "react";
 import { Mycontext } from "../App";
 
 const Reward = () => {
-  const { toggleModal, setToggleModal } = useContext(Mycontext);
+  const {
+    toggleModal,
+    setToggleModal,
+    OriginalTotalPrice,
+    secondOriginalTotalPrice,
+  } = useContext(Mycontext);
   const selecthandleclickone = () => {
     setToggleModal(!toggleModal);
     window.scrollTo({
@@ -42,7 +47,7 @@ const Reward = () => {
 
         <div className="reward-footer  flex  flex-col sm:flex-row   justify-between mt-8">
           <div className="number-remaining flex flex-row">
-            <h1 className="text-3xl number-left">101</h1>
+            <h1 className="text-3xl number-left">{OriginalTotalPrice}</h1>
             <span className="left mt-2 text-DarkGray ml-2">left</span>
           </div>
 
@@ -74,7 +79,7 @@ const Reward = () => {
 
         <div className="reward-footer flex  flex-col sm:flex-row    justify-between mt-8">
           <div className="number-remaining flex flex-row">
-            <h1 className="text-3xl number-left">64</h1>
+            <h1 className="text-3xl number-left">{secondOriginalTotalPrice}</h1>
             <span className="left mt-2 text-DarkGray ml-2">left</span>
           </div>
 

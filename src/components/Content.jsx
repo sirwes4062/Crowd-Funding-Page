@@ -8,17 +8,18 @@ import { Mycontext } from "../App";
 
 const Content = () => {
   const { toggleModal, setToggleModal } = useContext(Mycontext);
-  const [toggleBookmarkButton, SetToggleBookmarkButton] = useState(false);
+  const [toggleBookmarkButton, SetToggleBookmarkButton] = useState(
+    localStorage.getItem("clicked") ? localStorage.getItem("clicked") : false
+  );
 
   const bookmarkClick = () => {
     SetToggleBookmarkButton(!toggleBookmarkButton);
+    localStorage.setItem("clicked", toggleBookmarkButton);
   };
 
-  // button to show the modal
   const handleModalClick = () => {
     setToggleModal(!toggleModal);
 
-    // SCROLL EFFECT TO A PARTICULAR HEIGHT OF THE WINDOW
     window.scrollTo({
       top: 400,
       behaviour: "smooth",
@@ -49,7 +50,7 @@ const Content = () => {
             className="bookmark cursor-pointer text-DarkGray flex justify-between items-center bg"
             onClick={bookmarkClick}>
             {toggleBookmarkButton ? (
-              <div className="bookmark-green bookmark-green-image flex justify-center items-center">
+              <div className="bookmark-green bookmark-green-image  rounded-full flex justify-center items-center">
                 <FontAwesomeIcon icon={faBookmark} className="fontawesome" />
               </div>
             ) : (
@@ -71,8 +72,8 @@ const Content = () => {
       <div className="money-and-days m-auto flex mt-7 mb-6 justify-around items-center flex-col">
         <div className="block sm:flex sm:flex-row lg:space-x-5 md:space-x-3 sm:space-x-1">
           <div className="money">
-            <h1 className="lg:text-4xl md:text-2xl text-Black"> $89,914</h1>
-            <p className=" text-DarkGray"> of $100,000 backed</p>
+            <h1 className="lg:text-4xl md:text-2xl text-Black">89,914</h1>
+            <p className=" text-DarkGray"> of $1,000,000 backed</p>
           </div>
 
           <div className="total-backers">

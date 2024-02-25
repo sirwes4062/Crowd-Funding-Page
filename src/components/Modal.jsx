@@ -2,7 +2,6 @@ import React from "react";
 import { useContext } from "react";
 import { Mycontext } from "../App";
 import Cross from "../images/icon-close-modal.svg";
-import { useState } from "react";
 
 const Modal = () => {
   const {
@@ -16,15 +15,17 @@ const Modal = () => {
     setTogglePlegeThree,
     setToggleCongratsModal,
     toggleCongratsModal,
+    OriginalTotalPrice,
+    setOriginalTotalPrice,
+    secondOriginalTotalPrice,
+    setSecondOriginalTotalPrice,
+    noPledgeAmount,
+    setNoPledgeAmount,
+    firstPledgeAmount,
+    setfirstPledgeAmount,
+    secondPledgeAmount,
+    setsecondPledgeAmount,
   } = useContext(Mycontext);
-
-  const [noPledgeAmount, setNoPledgeAmount] = useState();
-
-  const [firstPledgeAmount, setfirstPledgeAmount] = useState();
-  let [OriginalTotalPrice, setOriginalTotalPrice] = useState(101);
-
-  const [secondPledgeAmount, setsecondPledgeAmount] = useState();
-  let [secondOriginalTotalPrice, setSecondOriginalTotalPrice] = useState(64);
 
   const noPledgehandlechange = (e) => {
     setNoPledgeAmount(e.target.value);
@@ -38,12 +39,11 @@ const Modal = () => {
     setsecondPledgeAmount(e.target.value);
   };
 
-  // CONTINUE CLICK BUTTON
   const handleContinueClick = () => {
     if (
       firstPledgeAmount &&
-      firstPledgeAmount > 25 &&
-      !isNaN(firstPledgeAmount)
+      !isNaN(firstPledgeAmount) &&
+      firstPledgeAmount > 25
     ) {
       setOriginalTotalPrice(OriginalTotalPrice - 1);
     }
@@ -58,12 +58,11 @@ const Modal = () => {
     setToggleModal(!toggleModal);
   };
 
-  // CONTINUE CLICK BUTTON
   const handleSecondContinueClick = () => {
     if (
       secondPledgeAmount &&
-      secondPledgeAmount > 75 &&
-      !isNaN(firstPledgeAmount)
+      !isNaN(secondPledgeAmount) &&
+      secondPledgeAmount > 75
     ) {
       setSecondOriginalTotalPrice(secondOriginalTotalPrice - 1);
     }
@@ -74,7 +73,6 @@ const Modal = () => {
       top: 0,
       behaviour: "smooth",
     });
-
     setToggleModal(!toggleModal);
   };
 
@@ -255,7 +253,9 @@ const Modal = () => {
               </div>
 
               <div className="price hidden md:mt-0   sm:flex md:justify-end">
-                <h1 className="text-Black mr-1">{OriginalTotalPrice}</h1>
+                <h1 className="text-Black mr-1  text-2xl">
+                  {OriginalTotalPrice}
+                </h1>
                 <p className="text-DarkGray">left</p>
               </div>
             </div>
@@ -428,7 +428,7 @@ const Modal = () => {
                         style={{ fontWeight: "500" }}
                         onChange={handlesecondchange}
                         type="text"
-                        placeholder="$ 25"
+                        placeholder="$ 75"
                         className="inputted-price bg-transparent outline-none"
                       />
                     </div>
